@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Hero3D from './components/Hero3D';
 import ProductGrid from './components/ProductGrid';
 import ProductModal from './components/ProductModal';
@@ -49,7 +49,6 @@ const translations = {
 function App() {
   const [lang, setLang] = useState('dz');
   const t = useMemo(() => translations[lang], [lang]);
-  const collectionRef = useRef(null);
   const [selected, setSelected] = useState(null);
 
   const scrollToCollection = () => {
@@ -78,7 +77,7 @@ function App() {
 
       <Hero3D t={t} onViewCollection={scrollToCollection} lang={lang} setLang={setLang} />
 
-      <ProductGrid t={t} onSelect={setSelected} ref={collectionRef} />
+      <ProductGrid t={t} onSelect={setSelected} />
 
       <WhyUsReviews t={t} />
 

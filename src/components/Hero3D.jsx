@@ -1,15 +1,20 @@
 import React from 'react';
 import Spline from '@splinetool/react-spline';
+import ErrorBoundary from './ErrorBoundary';
 
 const Hero3D = ({ t, onViewCollection, lang, setLang }) => {
   return (
     <section className="relative min-h-[80vh] w-full overflow-hidden rounded-3xl bg-[var(--cream-white)] shadow-[0_40px_120px_rgba(236,197,192,0.35)]">
-      {/* Spline background or graceful fallback gradient */}
+      {/* 3D background with graceful fallback */}
       <div className="absolute inset-0">
-        <Spline
-          scene="https://prod.spline.design/d0A7R6n2Zq3Kk4l2/scene.splinecode"
-          style={{ width: '100%', height: '100%' }}
-        />
+        {/* Base gradient so we have a pleasant background even if 3D fails */}
+        <div className="absolute inset-0" style={{ background: 'var(--gradient-dreamy)' }} />
+        <ErrorBoundary>
+          <Spline
+            scene="https://prod.spline.design/d0A7R6n2Zq3Kk4l2/scene.splinecode"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </ErrorBoundary>
         <div className="pointer-events-none absolute inset-0" style={{ background: 'var(--gradient-overlay)' }} />
       </div>
 
